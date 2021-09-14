@@ -12,19 +12,36 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
-""" 
-@app.route('/predict', methods=['POST','GET'])
-def predict() : 
-    name = "hello oeiple"
-    result = request.form["sentence"]
-    return render_template('index2.html', result=result )
- """
+
+def preprocess(text) : 
+  text = text.replace("?","") 
+  text = text.replace("/","") 
+  text = text.replace(")","")
+  text = text.replace("(","")
+  text = text.replace("|","")
+  text = text.replace(",","")
+  text = text.replace("'","")
+  text = text.replace("\t","")
+  text = text.replace("\r","") 
+  text = text.replace("\n","")
+  text = text.replace('"',"")
+  text = text.replace('@',"")
+  text = text.replace('#',"")
+  text = text.replace('&',"")
+  text = text.replace('*',"")
+  text = text.replace('!',"")
+  text = text.replace('-',"")
+  text = text.lower()
+  return text
+
 @app.route('/prediction', methods=['POST'])
 def prediction() : 
     model = T5ForConditionalGeneration.from_pretrained("model")
     tokenizer = AutoTokenizer.from_pretrained("t5-small")
     generator = pipeline("summarization" ,model=model, tokenizer=tokenizer)
-    results = generator(str(request.form['text']))   
+        results = str(request.form['text'])
+    results = preprocess(results)
+    results = generator(results)  
     result =  results[0]['summary_text']
     return render_template('index.html', result=result )
 
