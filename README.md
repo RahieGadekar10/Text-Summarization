@@ -37,7 +37,7 @@ In this case we have made use of T5 transformer and tokenizer for summarizing th
     ```
 - Execute index.html 
 
-## Authors
+## Demo
 ![Demo](https://user-images.githubusercontent.com/68743282/133242658-e2ea4dde-2242-471b-9d50-6d2f3237b5f4.gif)
 
 ## T5 Tranformer
