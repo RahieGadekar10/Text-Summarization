@@ -1,4 +1,4 @@
-# Text Summarization Using Simple-Transformers
+# Text Summarizer
 
 Text Summarization summarization is the process of shortening a set of data computationally, to create a subset that represents the most important or relevant information within the original content. 
 The Text Summarization model is a Transformer based model built using Simple Transformer which takes a textual paragraph as an input and outputs a summary of that paragraph. This works by first 
